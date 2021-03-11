@@ -37,6 +37,15 @@ class DetailCategoryFragment : Fragment() {
         tvCategoryDescription = view.findViewById(R.id.tv_category_description)
         btnProfile = view.findViewById(R.id.btn_profile)
         btnShowDialog = view.findViewById(R.id.btn_show_dialog)
+
+        btnShowDialog.setOnClickListener {
+            val mOptionDialogFragment = OptionDialogFragment()
+            val mFragmentManager = childFragmentManager
+            mOptionDialogFragment.show(
+                mFragmentManager,
+                OptionDialogFragment::class.java.simpleName
+            )
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -47,4 +56,11 @@ class DetailCategoryFragment : Fragment() {
             tvCategoryDescription.text = description
         }
     }
+
+    internal var optionDialogListener: OptionDialogFragment.OnOptionDialogListener =
+        object : OptionDialogFragment.OnOptionDialogListener {
+            override fun onOptionChosen(text: String?) {
+                Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
+            }
+        }
 }
