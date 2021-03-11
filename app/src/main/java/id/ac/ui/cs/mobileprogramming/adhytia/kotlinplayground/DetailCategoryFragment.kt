@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +46,11 @@ class DetailCategoryFragment : Fragment() {
                 mFragmentManager,
                 OptionDialogFragment::class.java.simpleName
             )
+        }
+
+        btnProfile.setOnClickListener{
+            val mIntent = Intent(activity, ProfileActivity::class.java)
+            startActivity(mIntent)
         }
     }
 
