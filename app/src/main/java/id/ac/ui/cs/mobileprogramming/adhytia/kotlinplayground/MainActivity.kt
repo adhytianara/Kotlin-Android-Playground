@@ -54,7 +54,6 @@ class MainActivity : AppCompatActivity() {
         //READ USING GSON
         val jsonFileString = getJsonDataFromAsset(applicationContext, "bezkoder.json")
         Log.i("data", jsonFileString)
-        Log.i("data", userArray.toString())
 
         val gson = Gson()
         val listPersonType = object : TypeToken<List<Person>>() {}.type
