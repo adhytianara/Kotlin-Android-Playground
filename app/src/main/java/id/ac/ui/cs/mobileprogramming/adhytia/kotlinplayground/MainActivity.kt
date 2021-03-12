@@ -1,13 +1,23 @@
 package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 import java.nio.charset.Charset
+
+/*
+Source :
+1. https://www.tutorialspoint.com/how-to-parse-json-objects-on-android-using-kotlin
+2. https://bezkoder.com/kotlin-android-read-json-file-assets-gson/
+*/
 
 class MainActivity : AppCompatActivity() {
     var personName: ArrayList<String> = ArrayList()
@@ -39,6 +49,29 @@ class MainActivity : AppCompatActivity() {
 
         val customAdapter = CustomAdapter(this@MainActivity, personName, emailId, mobileNumbers)
         recyclerView.adapter = customAdapter
+
+
+        //READ USING GSON
+        val jsonFileString = getJsonDataFromAsset(applicationContext, "bezkoder.json")
+        Log.i("data", jsonFileString)
+        Log.i("data", userArray.toString())
+
+        val gson = Gson()
+        val listPersonType = object : TypeToken<List<Person>>() {}.type
+
+        var persons: List<Person> = gson.fromJson(jsonFileString, listPersonType)
+        persons.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
+    }
+
+    private fun getJsonDataFromAsset(context: Context, fileName: String): String? {
+        val jsonString: String
+        try {
+            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return jsonString
     }
 
     private fun loadJSONFromAsset(): String {
