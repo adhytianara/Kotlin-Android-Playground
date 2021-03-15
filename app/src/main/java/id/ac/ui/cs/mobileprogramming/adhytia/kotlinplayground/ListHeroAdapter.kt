@@ -10,7 +10,13 @@ import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.ItemRo
 class ListHeroAdapter(private val listHero: ArrayList<Hero>) :
     RecyclerView.Adapter<ListHeroAdapter.ListViewHolder>() {
 
-    class ListViewHolder(private val binding: ItemRowHeroBinding) :
+    private var onItemClickCallback: OnItemClickCallback? = null
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    inner class ListViewHolder(private val binding: ItemRowHeroBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(hero: Hero) {
             with(binding) {
@@ -20,8 +26,15 @@ class ListHeroAdapter(private val listHero: ArrayList<Hero>) :
                     .into(imgItemPhoto)
                 tvItemName.text = hero.name
                 tvItemDescription.text = hero.description
+
+                itemView.setOnClickListener { onItemClickCallback?.onItemClicked(hero) }
             }
         }
+
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: Hero)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListViewHolder {
