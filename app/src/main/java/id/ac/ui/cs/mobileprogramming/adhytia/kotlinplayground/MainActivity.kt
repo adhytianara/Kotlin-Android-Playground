@@ -73,8 +73,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showRecyclerGrid() {
-        rvHeroes.layoutManager = GridLayoutManager(this, 2)
+        binding.rvHeroes.layoutManager = GridLayoutManager(this, 2)
         val gridHeroAdapter = GridHeroAdapter(list)
-        rvHeroes.adapter = gridHeroAdapter
+        binding.rvHeroes.adapter = gridHeroAdapter
     }
 }
