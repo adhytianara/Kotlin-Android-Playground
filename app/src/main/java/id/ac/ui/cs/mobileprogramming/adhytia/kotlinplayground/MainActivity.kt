@@ -7,19 +7,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var rvHeroes: RecyclerView
-    private var list: ArrayList<Hero> = arrayListOf()
+    private val list = ArrayList<Hero>()
+
+
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        rvHeroes = findViewById(R.id.rv_heroes)
-        rvHeroes.setHasFixedSize(true)
+        binding.rvHeroes.setHasFixedSize(true)
 
-        list.addAll(HeroesData.listData)
+        list.addAll(getListHeroes())
         showRecyclerList()
     }
 
@@ -46,10 +50,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun getListHeroes(): ArrayList<Hero> {
+        val dataName = resources.getStringArray(R.array.data_name)
+        val dataDescription = resources.getStringArray(R.array.data_description)
+        val dataPhoto = resources.getStringArray(R.array.data_photo)
+        val listHero = ArrayList<Hero>()
+        for (position in dataName.indices) {
+            val hero = Hero(
+                dataName[position],
+                dataDescription[position],
+                dataPhoto[position]
+            )
+            listHero.add(hero)
+        }
+        return listHero
+    }
+
     private fun showRecyclerList() {
-        rvHeroes.layoutManager = LinearLayoutManager(this)
+        binding.rvHeroes.layoutManager = LinearLayoutManager(this)
         val listHeroAdapter = ListHeroAdapter(list)
-        rvHeroes.adapter = listHeroAdapter
+        binding.rvHeroes.adapter = listHeroAdapter
     }
 
     private fun showRecyclerGrid() {
