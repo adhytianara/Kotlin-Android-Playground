@@ -1,0 +1,20 @@
+package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground
+
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
+
+class SectionsPagerAdapter (activity: MainActivity) : FragmentStateAdapter(activity) {
+
+    override fun createFragment(position: Int): Fragment {
+        var fragment: Fragment? = null
+        when (position) {
+            0 -> fragment = HomeFragment()
+            1 -> fragment = ProfileFragment()
+        }
+        return fragment as Fragment
+    }
+
+    override fun getItemCount(): Int {
+        return 2
+    }
+}
