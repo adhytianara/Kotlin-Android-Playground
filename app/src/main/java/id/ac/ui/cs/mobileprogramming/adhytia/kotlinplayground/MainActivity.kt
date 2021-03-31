@@ -9,6 +9,8 @@ import bangkit.adhytia.github_user.MainViewModelFactory
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.repository.Repository
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.ActivityMainBinding
 
+// SOURCE : https://www.youtube.com/playlist?list=PLSrm9z4zp4mF1Ssdfuocy2XH5Bw4wLLNw
+
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private var binding: ActivityMainBinding? = null
