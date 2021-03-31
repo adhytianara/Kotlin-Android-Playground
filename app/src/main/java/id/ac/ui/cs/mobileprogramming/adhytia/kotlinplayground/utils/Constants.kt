@@ -1,4 +1,4 @@
-package bangkit.adhytia.github_user.utils
+package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.utils
 
 class Constants {
     companion object {

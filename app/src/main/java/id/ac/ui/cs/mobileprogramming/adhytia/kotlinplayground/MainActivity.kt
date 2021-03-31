@@ -5,30 +5,44 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import bangkit.adhytia.github_user.MainViewModel
 import bangkit.adhytia.github_user.MainViewModelFactory
-import bangkit.adhytia.github_user.repository.Repository
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.repository.Repository
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
+    private var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
 
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getPost()
-        viewModel.myResponse.observe(this, Observer { response ->
+
+        viewModel.myCustomPosts2.observe(this, Observer { response ->
             if (response.isSuccessful) {
-                Log.d("Response", response.body()?.myUserId.toString())
-                Log.d("Response", response.body()?.id.toString())
-                Log.d("Response", response.body()?.title!!)
-                Log.d("Response", response.body()?.body!!)
+                binding!!.textView.text = response.body().toString()
+                response.body()?.forEach {
+                    Log.d("RESPONSE", it.myUserId.toString())
+                    Log.d("RESPONSE", it.id.toString())
+                    Log.d("RESPONSE", it.title)
+                    Log.d("RESPONSE", it.body)
+                }
             } else {
-                Log.d("Response", response.errorBody().toString())
+                binding!!.textView.text = response.body().toString()
             }
         })
+
+        val options: HashMap<String, String> = HashMap()
+        options["_sort"] = "id"
+        options["_order"] = "desc"
+
+        binding?.button?.setOnClickListener {
+            val myNumber = binding?.numberEditText?.text.toString()
+            viewModel.getCustomPosts2(Integer.parseInt(myNumber), options)
+        }
     }
 }

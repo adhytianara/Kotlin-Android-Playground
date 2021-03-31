@@ -2,7 +2,8 @@ package bangkit.adhytia.github_user
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import bangkit.adhytia.github_user.repository.Repository
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.MainViewModel
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.repository.Repository
 
 class MainViewModelFactory(private val repository: Repository) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

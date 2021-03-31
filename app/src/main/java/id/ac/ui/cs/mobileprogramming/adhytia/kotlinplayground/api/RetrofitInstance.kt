@@ -1,6 +1,6 @@
-package bangkit.adhytia.github_user.api
+package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.api
 
-import bangkit.adhytia.github_user.utils.Constants.Companion.BASE_URL
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.utils.Constants.Companion.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

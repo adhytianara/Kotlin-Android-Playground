@@ -1,4 +1,4 @@
-package bangkit.adhytia.github_user.model
+package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.model
 
 import com.google.gson.annotations.SerializedName
 
