@@ -52,7 +52,7 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
 
         if (isEdit) {
             // Uri yang di dapatkan disini akan digunakan untuk ambil data dari provider
-            // content://com.dicoding.picodiploma.mynotesapp/note/id
+            // content://id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground/note/id
             uriWithId = Uri.parse(CONTENT_URI.toString() + "/" + note?.id)
             val cursor = contentResolver.query(uriWithId, null, null, null, null)
             if (cursor != null) {
@@ -105,14 +105,14 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
             if (isEdit) {
 
                 // Gunakan uriWithId dari intent activity ini
-                // content://com.dicoding.picodiploma.mynotesapp/note/id
+                // content://id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground/note/id
                 contentResolver.update(uriWithId, values, null, null)
                 Toast.makeText(this, "Satu item berhasil diedit", Toast.LENGTH_SHORT).show()
                 finish()
             } else {
                 values.put(DATE, getCurrentDate())
                 // Gunakan content uri untuk insert
-                // content://com.dicoding.picodiploma.mynotesapp/note/
+                // content://id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground/note/
                 contentResolver.insert(CONTENT_URI, values)
                 Toast.makeText(this, "Satu item berhasil disimpan", Toast.LENGTH_SHORT).show()
                 finish()
@@ -174,7 +174,7 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                     finish()
                 } else {
                     // Gunakan uriWithId untuk delete
-                    // content://com.dicoding.picodiploma.mynotesapp/note/id
+                    // content://id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground/note/id
                     contentResolver.delete(uriWithId, null, null)
                     Toast.makeText(this, "Satu item berhasil dihapus", Toast.LENGTH_SHORT).show()
                     finish()

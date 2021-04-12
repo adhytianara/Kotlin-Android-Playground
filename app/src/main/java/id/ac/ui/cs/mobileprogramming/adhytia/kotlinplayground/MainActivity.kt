@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.Main) {
             binding.progressbar.visibility = View.VISIBLE
             val deferredNotes = async(Dispatchers.IO) {
-                // CONTENT_URI = content://com.dicoding.picodiploma.mynotesapp/note
+                // CONTENT_URI = content://id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground/note
                 val cursor = contentResolver.query(CONTENT_URI, null, null, null, null)
                 MappingHelper.mapCursorToArrayList(cursor)
             }

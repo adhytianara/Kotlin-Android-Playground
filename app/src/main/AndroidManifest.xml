@@ -3,10 +3,10 @@
     package="id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground">
 
     <permission
-        android:name="com.dicoding.mynotesapp.READ_DATABASE"
+        android:name="id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.READ_DATABASE"
         android:protectionLevel="normal" />
     <permission
-        android:name="com.dicoding.mynotesapp.WRITE_DATABASE"
+        android:name="id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.WRITE_DATABASE"
         android:protectionLevel="normal" />
 
     <application
@@ -18,11 +18,11 @@
         android:theme="@style/Theme.KotlinPlayground">
         <provider
             android:name=".provider.NoteProvider"
-            android:authorities="com.dicoding.picodiploma.mynotesapp"
+            android:authorities="id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground"
             android:enabled="true"
             android:exported="true"
-            android:readPermission="com.dicoding.mynotesapp.READ_DATABASE"
-            android:writePermission="com.dicoding.mynotesapp.WRITE_DATABASE" />
+            android:readPermission="id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.READ_DATABASE"
+            android:writePermission="id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.WRITE_DATABASE" />
 
         <activity android:name=".NoteAddUpdateActivity" />
         <activity android:name=".MainActivity">

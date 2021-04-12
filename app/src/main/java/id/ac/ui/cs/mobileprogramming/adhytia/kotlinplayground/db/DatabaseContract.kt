@@ -5,7 +5,7 @@ import android.provider.BaseColumns
 
 object DatabaseContract {
 
-    const val AUTHORITY = "com.dicoding.picodiploma.mynotesapp"
+    const val AUTHORITY = "id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground"
     const val SCHEME = "content"
 
     class NoteColumns : BaseColumns {
@@ -17,7 +17,7 @@ object DatabaseContract {
             const val DESCRIPTION = "description"
             const val DATE = "date"
 
-            // untuk membuat URI content://com.dicoding.picodiploma.mynotesapp/note
+            // untuk membuat URI content://id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground/note
             val CONTENT_URI: Uri = Uri.Builder().scheme(SCHEME)
                 .authority(AUTHORITY)
                 .appendPath(TABLE_NAME)

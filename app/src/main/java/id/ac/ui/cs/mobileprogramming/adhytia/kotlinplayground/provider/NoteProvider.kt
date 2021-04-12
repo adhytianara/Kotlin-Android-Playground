@@ -20,9 +20,9 @@ class NoteProvider : ContentProvider() {
         private lateinit var noteHelper: NoteHelper
 
         init {
-            // content://com.dicoding.picodiploma.mynotesapp/note
+            // content://id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground/note
             sUriMatcher.addURI(AUTHORITY, TABLE_NAME, NOTE)
-            // content://com.dicoding.picodiploma.mynotesapp/note/id
+            // content://id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground/note/id
             sUriMatcher.addURI(AUTHORITY, "$TABLE_NAME/#", NOTE_ID)
         }
     }
