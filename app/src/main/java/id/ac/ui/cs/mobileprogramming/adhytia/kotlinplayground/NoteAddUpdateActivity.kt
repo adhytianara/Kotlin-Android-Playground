@@ -1,7 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground
 
 import android.content.ContentValues
-import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -10,28 +10,26 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.ActivityNoteAddUpdateBinding
-import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.db.DatabaseContract
-import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.db.NoteHelper
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.db.DatabaseContract.NoteColumns.Companion.CONTENT_URI
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.db.DatabaseContract.NoteColumns.Companion.DATE
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.db.DatabaseContract.NoteColumns.Companion.DESCRIPTION
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.db.DatabaseContract.NoteColumns.Companion.TITLE
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.entity.Note
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.helper.MappingHelper
 import java.text.SimpleDateFormat
 import java.util.*
 
 class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
+
+    private lateinit var binding: ActivityNoteAddUpdateBinding
     private var isEdit = false
     private var note: Note? = null
     private var position: Int = 0
-    private lateinit var noteHelper: NoteHelper
-
-    private lateinit var binding: ActivityNoteAddUpdateBinding
+    private lateinit var uriWithId: Uri
 
     companion object {
         const val EXTRA_NOTE = "extra_note"
         const val EXTRA_POSITION = "extra_position"
-        const val REQUEST_ADD = 100
-        const val RESULT_ADD = 101
-        const val REQUEST_UPDATE = 200
-        const val RESULT_UPDATE = 201
-        const val RESULT_DELETE = 301
         const val ALERT_DIALOG_CLOSE = 10
         const val ALERT_DIALOG_DELETE = 20
     }
@@ -40,9 +38,6 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityNoteAddUpdateBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        noteHelper = NoteHelper.getInstance(applicationContext)
-        noteHelper.open()
 
         note = intent.getParcelableExtra(EXTRA_NOTE)
         if (note != null) {
@@ -56,6 +51,15 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         val btnTitle: String
 
         if (isEdit) {
+            // Uri yang di dapatkan disini akan digunakan untuk ambil data dari provider
+            // content://com.dicoding.picodiploma.mynotesapp/note/id
+            uriWithId = Uri.parse(CONTENT_URI.toString() + "/" + note?.id)
+            val cursor = contentResolver.query(uriWithId, null, null, null, null)
+            if (cursor != null) {
+                note = MappingHelper.mapCursorToObject(cursor)
+                cursor.close()
+            }
+
             actionBarTitle = "Ubah"
             btnTitle = "Update"
 
@@ -70,62 +74,48 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         supportActionBar?.title = actionBarTitle
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.btnSubmit.text = btnTitle
 
         binding.btnSubmit.setOnClickListener(this)
     }
 
+
     override fun onClick(view: View) {
         if (view.id == R.id.btn_submit) {
             val title = binding.edtTitle.text.toString().trim()
             val description = binding.edtDescription.text.toString().trim()
 
+            /*
+            Jika fieldnya masih kosong maka tampilkan error
+             */
             if (title.isEmpty()) {
                 binding.edtTitle.error = "Field can not be blank"
                 return
             }
 
-            note?.title = title
-            note?.description = description
-
-            val intent = Intent()
-            intent.putExtra(EXTRA_NOTE, note)
-            intent.putExtra(EXTRA_POSITION, position)
-
+            // Gunakan contentvalues untuk menampung data
             val values = ContentValues()
-            values.put(DatabaseContract.NoteColumns.TITLE, title)
-            values.put(DatabaseContract.NoteColumns.DESCRIPTION, description)
+            values.put(TITLE, title)
+            values.put(DESCRIPTION, description)
 
+            /*
+            Jika merupakan edit setresultnya UPDATE, dan jika bukan maka setresultnya ADD
+             */
             if (isEdit) {
-                val result = noteHelper.update(note?.id.toString(), values)
-                if (result > 0) {
-                    setResult(RESULT_UPDATE, intent)
-                    finish()
-                } else {
-                    Toast.makeText(
-                        this@NoteAddUpdateActivity,
-                        "Gagal mengupdate data",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            } else {
-                note?.date = getCurrentDate()
-                values.put(DatabaseContract.NoteColumns.DATE, getCurrentDate())
-                val result = noteHelper.insert(values)
 
-                if (result > 0) {
-                    note?.id = result.toInt()
-                    setResult(RESULT_ADD, intent)
-                    finish()
-                } else {
-                    Toast.makeText(
-                        this@NoteAddUpdateActivity,
-                        "Gagal menambah data",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+                // Gunakan uriWithId dari intent activity ini
+                // content://com.dicoding.picodiploma.mynotesapp/note/id
+                contentResolver.update(uriWithId, values, null, null)
+                Toast.makeText(this, "Satu item berhasil diedit", Toast.LENGTH_SHORT).show()
+                finish()
+            } else {
+                values.put(DATE, getCurrentDate())
+                // Gunakan content uri untuk insert
+                // content://com.dicoding.picodiploma.mynotesapp/note/
+                contentResolver.insert(CONTENT_URI, values)
+                Toast.makeText(this, "Satu item berhasil disimpan", Toast.LENGTH_SHORT).show()
+                finish()
             }
         }
     }
@@ -156,6 +146,11 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         showAlertDialog(ALERT_DIALOG_CLOSE)
     }
 
+    /*
+    Konfirmasi dialog sebelum proses batal atau hapus
+    close = 10
+    delete = 20
+    */
     private fun showAlertDialog(type: Int) {
         val isDialogClose = type == ALERT_DIALOG_CLOSE
         val dialogTitle: String
@@ -178,19 +173,11 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
                 if (isDialogClose) {
                     finish()
                 } else {
-                    val result = noteHelper.deleteById(note?.id.toString()).toLong()
-                    if (result > 0) {
-                        val intent = Intent()
-                        intent.putExtra(EXTRA_POSITION, position)
-                        setResult(RESULT_DELETE, intent)
-                        finish()
-                    } else {
-                        Toast.makeText(
-                            this@NoteAddUpdateActivity,
-                            "Gagal menghapus data",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                    // Gunakan uriWithId untuk delete
+                    // content://com.dicoding.picodiploma.mynotesapp/note/id
+                    contentResolver.delete(uriWithId, null, null)
+                    Toast.makeText(this, "Satu item berhasil dihapus", Toast.LENGTH_SHORT).show()
+                    finish()
                 }
             }
             .setNegativeButton("Tidak") { dialog, _ -> dialog.cancel() }
