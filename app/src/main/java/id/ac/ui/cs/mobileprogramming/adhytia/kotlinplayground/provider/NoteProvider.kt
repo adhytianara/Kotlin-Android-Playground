@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import android.util.Log
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.db.DatabaseContract.AUTHORITY
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.db.DatabaseContract.NoteColumns.Companion.CONTENT_URI
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.db.DatabaseContract.NoteColumns.Companion.TABLE_NAME
@@ -23,6 +24,7 @@ class NoteProvider : ContentProvider() {
             // content://id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground/note
             sUriMatcher.addURI(AUTHORITY, TABLE_NAME, NOTE)
             // content://id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground/note/id
+            // WARNING : # hanya untuk digit, * lebih universal
             sUriMatcher.addURI(AUTHORITY, "$TABLE_NAME/#", NOTE_ID)
         }
     }
@@ -40,6 +42,8 @@ class NoteProvider : ContentProvider() {
         strings1: Array<String>?,
         s1: String?
     ): Cursor? {
+        Log.d("DEBUG provider", sUriMatcher.match(uri).toString() + " " + uri.lastPathSegment.toString())
+        Log.d("DEBUG provider uri", uri.toString())
         return when (sUriMatcher.match(uri)) {
             NOTE -> noteHelper.queryAll()
             NOTE_ID -> noteHelper.queryById(uri.lastPathSegment.toString())
