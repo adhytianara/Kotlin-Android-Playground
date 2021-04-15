@@ -43,9 +43,7 @@ class RandomNumbersWidget : AppWidgetProvider() {
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
-        Log.d("DEBUG randomnumberwidget", "before if")
         if (WIDGET_CLICK == intent.action) {
-            Log.d("DEBUG randomnumberwidget", "in if")
             val appWidgetManager = AppWidgetManager.getInstance(context)
             val views = RemoteViews(context.packageName, R.layout.random_numbers_widget)
             val lastUpdate = "Random: " + NumberGenerator.generate(100)
