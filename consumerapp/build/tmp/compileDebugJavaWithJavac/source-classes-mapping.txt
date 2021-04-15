@@ -1,0 +1,8 @@
+bangkit/adhytia/consumerapp/databinding/ActivityMainBinding.java
+ bangkit.adhytia.consumerapp.databinding.ActivityMainBinding
+bangkit/adhytia/consumerapp/databinding/ItemNoteBinding.java
+ bangkit.adhytia.consumerapp.databinding.ItemNoteBinding
+bangkit/adhytia/consumerapp/databinding/ActivityNoteAddUpdateBinding.java
+ bangkit.adhytia.consumerapp.databinding.ActivityNoteAddUpdateBinding
+bangkit/adhytia/consumerapp/BuildConfig.java
+ bangkit.adhytia.consumerapp.BuildConfig
