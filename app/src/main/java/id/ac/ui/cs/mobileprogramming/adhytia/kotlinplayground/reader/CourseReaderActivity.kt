@@ -2,6 +2,7 @@ package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.R
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.content.ModuleContentFragment
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.list.ModuleListFragment
@@ -16,10 +17,16 @@ class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course_reader)
 
+        val viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        )[CourseReaderViewModel::class.java]
+
         val bundle = intent.extras
         if (bundle != null) {
             val courseId = bundle.getString(EXTRA_COURSE_ID)
             if (courseId != null) {
+                viewModel.setSelectedCourse(courseId)
                 populateFragment()
             }
         }
@@ -27,7 +34,8 @@ class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
 
     override fun moveTo(position: Int, moduleId: String) {
         val fragment = ModuleContentFragment.newInstance()
-        supportFragmentManager.beginTransaction().add(R.id.frame_container, fragment, ModuleContentFragment.TAG)
+        supportFragmentManager.beginTransaction()
+            .add(R.id.frame_container, fragment, ModuleContentFragment.TAG)
             .addToBackStack(null)
             .commit()
     }
