@@ -22,7 +22,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.home.HomeActivity" />
         </activity>
-        <activity android:name=".CourseReaderActivity" />
+        <activity android:name=".reader.CourseReaderActivity" />
         <activity android:name="id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
