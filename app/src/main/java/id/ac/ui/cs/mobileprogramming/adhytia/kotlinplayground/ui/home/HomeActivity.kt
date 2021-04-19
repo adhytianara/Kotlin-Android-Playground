@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.home
+package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

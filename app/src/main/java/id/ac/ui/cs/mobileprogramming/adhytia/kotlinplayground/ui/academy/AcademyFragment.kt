@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.academy
+package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.academy
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

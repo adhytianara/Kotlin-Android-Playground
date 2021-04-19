@@ -14,16 +14,16 @@
         android:theme="@style/Theme.KotlinPlayground"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".detail.DetailCourseActivity"
+            android:name="id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.detail.DetailCourseActivity"
             android:label="@string/title_activity_detail_course"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName="id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.home.HomeActivity"
             android:theme="@style/Theme.KotlinPlayground.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".home.HomeActivity" />
+                android:value="id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.home.HomeActivity" />
         </activity>
         <activity android:name=".CourseReaderActivity" />
-        <activity android:name=".home.HomeActivity">
+        <activity android:name="id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

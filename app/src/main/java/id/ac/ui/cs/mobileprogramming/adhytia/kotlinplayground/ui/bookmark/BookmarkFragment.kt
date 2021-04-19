@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.bookmark
+package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.bookmark
 
 import android.os.Bundle
 import android.view.LayoutInflater
