@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.list
+package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader.list
 
 import android.content.Context
 import android.os.Bundle
@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.data.ModuleEntity
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.FragmentModuleListBinding
-import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.CourseReaderActivity
-import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.CourseReaderCallback
-import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.CourseReaderViewModel
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader.CourseReaderActivity
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader.CourseReaderCallback
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader.CourseReaderViewModel
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.viewmodel.ViewModelFactory
 
 class ModuleListFragment : Fragment(), MyAdapterClickListener {

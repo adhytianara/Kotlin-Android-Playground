@@ -13,7 +13,7 @@ import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.R
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.data.CourseEntity
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.ActivityDetailCourseBinding
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.ContentDetailCourseBinding
-import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.CourseReaderActivity
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader.CourseReaderActivity
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.viewmodel.ViewModelFactory
 
 class DetailCourseActivity : AppCompatActivity() {

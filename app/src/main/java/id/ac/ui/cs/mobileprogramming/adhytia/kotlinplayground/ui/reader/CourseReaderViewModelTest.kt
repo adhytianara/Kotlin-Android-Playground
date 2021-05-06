@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader
+package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader
 
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.data.ContentEntity
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.utils.DataDummy

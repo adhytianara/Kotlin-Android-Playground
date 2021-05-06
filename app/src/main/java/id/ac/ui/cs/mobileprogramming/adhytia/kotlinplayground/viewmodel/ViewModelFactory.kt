@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.data.source.AcademyRepository
-import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.CourseReaderViewModel
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader.CourseReaderViewModel
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.academy.AcademyViewModel
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.di.Injection
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.bookmark.BookmarkViewModel

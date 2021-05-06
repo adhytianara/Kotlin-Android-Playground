@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.content
+package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader.content
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.data.ModuleEntity
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.FragmentModuleContentBinding
-import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.CourseReaderViewModel
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader.CourseReaderViewModel
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.viewmodel.ViewModelFactory
 
 class ModuleContentFragment : Fragment() {

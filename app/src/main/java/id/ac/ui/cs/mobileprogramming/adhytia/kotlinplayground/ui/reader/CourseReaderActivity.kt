@@ -1,11 +1,11 @@
-package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader
+package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.R
-import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.content.ModuleContentFragment
-import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.list.ModuleListFragment
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader.content.ModuleContentFragment
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader.list.ModuleListFragment
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.viewmodel.ViewModelFactory
 
 class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {

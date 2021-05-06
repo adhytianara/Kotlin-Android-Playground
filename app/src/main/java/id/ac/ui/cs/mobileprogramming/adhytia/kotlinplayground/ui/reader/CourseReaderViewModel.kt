@@ -1,10 +1,8 @@
-package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader
+package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader
 
 import androidx.lifecycle.ViewModel
-import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.data.ContentEntity
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.data.ModuleEntity
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.data.source.AcademyRepository
-import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.utils.DataDummy
 
 class CourseReaderViewModel(private val academyRepository: AcademyRepository) : ViewModel() {
 

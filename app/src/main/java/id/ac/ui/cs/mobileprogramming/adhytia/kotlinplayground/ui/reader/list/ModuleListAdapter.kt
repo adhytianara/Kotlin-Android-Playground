@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.list
+package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.reader.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
