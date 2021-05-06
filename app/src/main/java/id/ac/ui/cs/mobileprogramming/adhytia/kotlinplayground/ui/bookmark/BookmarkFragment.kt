@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.R
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.data.CourseEntity
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.FragmentBookmarkBinding
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.viewmodel.ViewModelFactory
 
 class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
 
@@ -29,10 +30,9 @@ class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
-            val viewModel = ViewModelProvider(
-                this,
-                ViewModelProvider.NewInstanceFactory()
-            )[BookmarkViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(this, factory)[BookmarkViewModel::class.java]
+
             val courses = viewModel.getBookmarks()
 
             val adapter = BookmarkAdapter(this)

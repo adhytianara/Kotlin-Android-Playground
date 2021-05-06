@@ -2,9 +2,10 @@ package id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.ui.academy
 
 import androidx.lifecycle.ViewModel
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.data.CourseEntity
-import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.utils.DataDummy
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.data.source.AcademyRepository
 
-class AcademyViewModel : ViewModel() {
+class AcademyViewModel(private val academyRepository: AcademyRepository) : ViewModel() {
 
-    fun getCourses(): List<CourseEntity> = DataDummy.generateDummyCourses()
+    fun getCourses(): List<CourseEntity> = academyRepository.getAllCourses()
+
 }

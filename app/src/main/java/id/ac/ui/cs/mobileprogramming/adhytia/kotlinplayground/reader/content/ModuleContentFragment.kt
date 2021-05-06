@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.data.ModuleEntity
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.FragmentModuleContentBinding
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.CourseReaderViewModel
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.viewmodel.ViewModelFactory
 
 class ModuleContentFragment : Fragment() {
 
@@ -33,10 +34,8 @@ class ModuleContentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
-            val viewModel = ViewModelProvider(
-                requireActivity(),
-                ViewModelProvider.NewInstanceFactory()
-            )[CourseReaderViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(requireActivity(), factory)[CourseReaderViewModel::class.java]
             val module = viewModel.getSelectedModule()
             populateWebView(module)
         }

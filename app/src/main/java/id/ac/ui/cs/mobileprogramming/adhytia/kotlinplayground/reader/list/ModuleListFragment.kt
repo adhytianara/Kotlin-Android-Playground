@@ -14,6 +14,7 @@ import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.Fragme
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.CourseReaderActivity
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.CourseReaderCallback
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.CourseReaderViewModel
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.viewmodel.ViewModelFactory
 
 class ModuleListFragment : Fragment(), MyAdapterClickListener {
 
@@ -40,10 +41,8 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            ViewModelProvider.NewInstanceFactory()
-        )[CourseReaderViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(requireActivity())
+        viewModel = ViewModelProvider(requireActivity(), factory)[CourseReaderViewModel::class.java]
         adapter = ModuleListAdapter(this)
         populateRecyclerView(viewModel.getModules())
     }

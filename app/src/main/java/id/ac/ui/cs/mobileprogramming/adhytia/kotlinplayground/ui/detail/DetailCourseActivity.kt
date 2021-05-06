@@ -14,6 +14,7 @@ import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.data.CourseEntity
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.ActivityDetailCourseBinding
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.databinding.ContentDetailCourseBinding
 import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.reader.CourseReaderActivity
+import id.ac.ui.cs.mobileprogramming.adhytia.kotlinplayground.viewmodel.ViewModelFactory
 
 class DetailCourseActivity : AppCompatActivity() {
 
@@ -36,10 +37,8 @@ class DetailCourseActivity : AppCompatActivity() {
 
         val adapter = DetailCourseAdapter()
 
-        val viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        )[DetailCourseViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factory)[DetailCourseViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null) {
